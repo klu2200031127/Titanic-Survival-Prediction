@@ -1,0 +1,148 @@
+Problem Statement:
+ • Develop a machine learning model to predict whether a passenger survived the Titanic disaster.
+ • Dataset includes features like age, gender, ticket class, fare, cabin information etc.
+ • Handle missing values, encode categorical variables, and normalize numerical data effectively.
+ • Evaluate model performance using accuracy, precision, etc.
+ • Expected outcome: A well-trained classification model with strong survival prediction accuracy.
+ • Submit a GitHub repository with structured code, preprocessing steps, model selection, and performance analysis in
+the README
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Dataset link:https://www.kaggle.com/datasets/brendan45774/test-file
+
+The dataset consists of the following columns:
+ • PassengerId: Unique ID for each passenger
+ • Survived: Target variable (1 if the passenger survived, 0 if they didn't)
+ • Pclass: Passenger class (1 = first class, 2 = second class, 3 = third class)
+ • Name: Name of the passenger
+ • Sex: Gender of the passenger (male or female)
+ • Age: Age of the passenger
+ • SibSp: Number of siblings or spouses aboard
+ • Parch: Number of parents or children aboard
+ • Ticket: Ticket number
+ • Fare: The fare the passenger paid for the ticket
+ • Cabin: Cabin number (many missing values)
+ • Embarked: Port of embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
+
+ ------------------------------------------------------------------------------------------------------------------------
+
+ Methods Used in the Code
+1. Data Cleaning
+  • Dropped Irrelevant Columns:
+    →Cabin, Name, and Ticket columns were dropped. The Cabin column had too many missing values, while Name and Ticket
+     were not directly useful for predicting survival.
+  • Handling Missing Values:
+    →Missing values in Age, Fare, and Embarked were handled as follows:
+    →Age was filled with the median age of the dataset.
+    →Fare was filled with the median fare.
+    →Embarked was filled with the most frequent value (mode), which represents the most common embarkation point.
+  • Label Encoding:
+    →The categorical variables Sex and Embarked were converted into numeric values using Label Encoding. This
+    transformation was necessary because machine learning algorithms can only work with numerical data.
+
+2. Feature Selection
+  • The relevant features for predicting survival were selected, which are:
+    →Pclass, Sex, Age, SibSp, Parch, Fare, and Embarked.
+    →The target variable for the prediction is Survived.
+
+3. Splitting the Data
+  • The data was split into training and testing sets using train_test_split. 80% of the data was used for training the
+   model, and 20% was used for testing and evaluating the model's performance.
+
+4. Modeling
+  • Random Forest Classifier:
+    →A RandomForestClassifier was used for classification. It is an ensemble model that creates multiple decision trees
+    and combines their outputs. Random forests generally perform well for classification tasks.
+    →The model was trained using the training data (X_train and y_train).
+
+5. Prediction
+    →After training, the model made predictions on the test data (X_test), and these predictions were compared to the
+    actual test labels (y_test).
+
+6. Model Evaluation
+  • The model's performance was evaluated using:
+    →Accuracy: The percentage of correct predictions.
+    →Precision: The number of correct positive predictions divided by all positive predictions.
+    →Recall: The number of correct positive predictions divided by all actual positive cases.
+    →F1-Score: The balance between precision and recall.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+How to Download and Run the Project:
+
+ • Follow the steps below to set up and run the Titanic Survival Prediction project:
+
+    Step 1: Clone the Repository
+    →To get a copy of this project, you can clone it to your local machine using the following command:
+     bash
+     Copy code: git clone https://github.com/klu2200031127/Titanic-Survival-Prediction.git
+     →Replace klu2200031127 with your GitHub username.
+     →Alternatively, you can download the project as a ZIP file from GitHub and extract it on your computer.
+
+    Step 2: Set Up Python Environment
+    →This project uses Python for data processing and machine learning. It's recommended to create a virtual environment
+     to manage dependencies.
+    =>Navigate to the project directory:
+      bash
+      Copy code: cd Titanic-Survival-Prediction
+    =>Create a virtual environment:
+      On Windows:-
+      bash
+       Copy code: python -m venv .venv
+       ----
+      On macOS/Linux:-
+       bash
+       Copy code: python3 -m venv .venv
+
+    =>Activate the virtual environment:
+      On Windows:
+      bash
+       Copy code: .venv\Scripts\activate
+       ----
+      On macOS/Linux:
+       bash
+       Copy code: source .venv/bin/activate
+
+    Step 3: Install Required Dependencies
+    →This project requires several Python libraries. To install the dependencies, run:
+     bash
+      Copy code: pip install -r requirements.txt
+
+     →Make sure that you have the requirements.txt file in the project directory. If it’s missing, you can manually
+     install the dependencies using:
+     bash
+      Copy code: pip install pandas scikit-learn
+
+    Step 4: Place the Dataset
+    →Make sure you have the dataset file (train.csv) in the correct folder as specified in the code. You can download
+    the dataset from Kaggle Titanic Dataset.
+     Put the train.csv file in the following directory:
+      bash
+       Copy code: Titanic-Survival-Prediction/data/
+
+    Step 5: Run the Project
+    →Once everything is set up, you can run the machine learning model script (titanic_model.py) by executing:
+     bash
+      Copy code: python titanic_model.py
+    →This will train the model and output the evaluation results, such as accuracy, precision, recall, and F1-score.
+
+-------------------------------------------------------------------------------------------------------------------------
+The output shows:
+ - Precision for both classes (survived and not survived) is 1.00, meaning all positive and negative predictions
+ were accurate.
+ - Recall for both classes is 1.00, meaning the model correctly identified all survivors and non-survivors.
+ - F1-Score is also 1.00, which indicates a perfect balance between precision and recall.
+
+Conclusion
+
+The model achieved **perfect accuracy** (1.0) on the test set. However, this result might be overfitting the model to
+the small test set. For more robust validation, it would be good to use techniques like **cross-validation** or to
+evaluate on a larger test set.
+
+While the model is performing well on the current dataset, further steps could include:
+- Trying other models like **Logistic Regression** or **Support Vector Machines**.
+- Tuning the model parameters (hyperparameter tuning) to improve its generalization.
+- Experimenting with feature engineering, like adding interaction features.
+
+-------------------------------------------------------------------------------------------------------------------------
